@@ -1,7 +1,9 @@
 name: Read EUR Exchange Rate from VIB
 
 on:
-  workflow_dispatch:
+  # workflow_dispatch:
+  schedule:
+    - cron: '0 * * * *'  # run every 1 hour
 
 permissions:
   contents: write    
