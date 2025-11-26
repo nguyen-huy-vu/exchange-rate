@@ -19,6 +19,7 @@ def main():
     time.sleep(3)  # wait to ensure page loads
     euro_element = driver.find_element(By.XPATH, '//*[@id="dataListTable"]/div[7]')
     euro_html = euro_element.get_attribute("outerHTML")
+    update_date = driver.find_element(By.XPATH, '//*[@id="selectday"]').get_attribute("value")
 
     driver.quit()
 
@@ -31,14 +32,16 @@ def main():
     cols = root.find_all("div", class_="vib-v2-colum-table-deposit")
     values = [c.get_text(strip=True) for c in cols]
 
-    print(code)      # "EUR"
-    print(name)      # "Euro"
+    print(f"Date: {update_date}")
+    print(f"Code: {code}")      # "EUR"
+    print(f"Currency: {name}")      # "Euro"
     print(f"Buy cash: {values[0]}")
     print(f"Buy transfer: {values[1]}")
     print(f"Sell cash: {values[2]}")
     print(f"Sell transfer: {values[3]}")
 
     result = {
+        "Date": {update_date},
         "Currency": name,
         "Code": code,
         "Buy cash": values[0],
