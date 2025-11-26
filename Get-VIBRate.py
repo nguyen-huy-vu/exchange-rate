@@ -41,7 +41,7 @@ def main():
     print(f"Sell transfer: {values[3]}")
 
     result = {
-        "Date": {update_date},
+        "Date": update_date,
         "Currency": name,
         "Code": code,
         "Buy cash": values[0],
