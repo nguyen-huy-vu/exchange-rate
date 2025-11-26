@@ -13,8 +13,6 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-        with:
-          ref: data   # checkout directly to data branch     
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -34,6 +32,7 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
+          git checkout data
           git add result.json
           git commit -m "Update result.json from workflow" || echo "No changes to commit"
           git push origin data  
