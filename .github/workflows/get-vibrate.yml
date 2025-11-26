@@ -1,0 +1,26 @@
+name: Read EUR Exchange Rate from VIB
+
+on:
+  workflow_dispatch:
+
+jobs:
+  read_eur_from_vib:
+    runs-on: windows-2022
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: pip install selenium webdriver-manager requests
+
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Run Get-VIBRate
+        run: python Get-VIBRate.py
