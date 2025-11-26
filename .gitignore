@@ -416,3 +416,9 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# guideline
+*.docx
+
+# Python Kivy app for Android
+kivy_main.py
