@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          ref: main          
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -28,11 +30,21 @@ jobs:
       - name: Run Get-VIBRate
         run: python Get-VIBRate.py
 
+      - name: Checkout data branch to push
+        uses: actions/checkout@v4
+        with:
+          ref: data  
+          path: data # use folder data to temporary save result.json before switch over another branch    
+
+      - name: Copy result.json to data branch folder
+        shell: powershell
+        run: Copy-Item -Path result.json -Destination data\result.json -Force
+
       - name: Push updated result.json to data branch
         run: |
+          cd data
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git checkout data
           git add result.json
           git commit -m "Update result.json from workflow" || echo "No changes to commit"
           git push origin data  
