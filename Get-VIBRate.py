@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
 import time
+import json
 
 def main():
     options = Options()
@@ -36,6 +37,20 @@ def main():
     print(f"Buy transfer: {values[1]}")
     print(f"Sell cash: {values[2]}")
     print(f"Sell transfer: {values[3]}")
+
+    result = {
+        "Currency": name,
+        "Code": code,
+        "Buy cash": values[0],
+        "Buy transfer": values[1],
+        "Sell cash": values[2],
+        "Sell transfer": values[3]
+    }
+    
+    with open("result.json", "w") as f:
+        json.dump(result, f)
+    print("Saved:", result)
+
 
 if __name__ == "__main__":
     main()

@@ -24,3 +24,13 @@ jobs:
 
       - name: Run Get-VIBRate
         run: python Get-VIBRate.py
+
+      - name: Push result.json to data branch
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git checkout data || git checkout -b data
+          cp result.json ./result.json
+          git add result.json
+          git commit -m "Update result.json from workflow" || echo "No changes to commit"
+          git push origin data        
