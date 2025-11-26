@@ -17,7 +17,7 @@ jobs:
           python-version: "3.x"
 
       - name: Install dependencies
-        run: pip install selenium webdriver-manager requests
+        run: pip install selenium webdriver-manager beautifulsoup4
 
       - name: Install Chrome
         uses: browser-actions/setup-chrome@v1
