@@ -422,3 +422,6 @@ FodyWeavers.xsd
 
 # Python Kivy app for Android
 kivy_main.py
+
+# apk generated
+*.apk
